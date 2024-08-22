@@ -211,7 +211,8 @@ private:
     int zf, cf;
     
 
-    int label_index(string label) {
+    int 
+    label_index(string label) {
         try {
             return label_table.at(label);
         } catch (const out_of_range& e) {
@@ -221,7 +222,8 @@ private:
     }
 
 
-    bool is_valid_number(string s) {
+    bool 
+    is_valid_number(string s) {
         for (char c : s)
             if (!isdigit(c))
                 return false;
