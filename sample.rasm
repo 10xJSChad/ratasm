@@ -1,0 +1,24 @@
+    mov r1 500
+    mov r2 150
+    add r1 r2
+    mul r1 5
+    printint r1
+    printchar 10
+    mov r1 r5
+    printint r1
+    printchar 10
+    printchar 10
+    mov r3 0
+loop_up:
+    printint r3
+    printchar 10
+    add r3 1
+    cmp r3 11
+    jne loop_up
+    sub r3 1
+loop_down:
+    sub r3 1
+    printint r3
+    printchar 10
+    cmp r3 0
+    jg loop_down

@@ -1,0 +1,6 @@
+    mov r1 0
+loop:
+    add r1 1
+    printint r1
+    printchar 10
+    jmp loop
