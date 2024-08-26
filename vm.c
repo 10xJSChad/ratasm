@@ -45,18 +45,6 @@ Instruction_Create(char* op, char* left, char* right) {
 }
 
 
-void Instruction_Append(char* op, char* left, char* right) {
-    struct Instruction* node = Instruction_Create(op, left, right);
-
-    if (head == NULL)
-        head = node;
-    else
-        tail->next = node;
-
-    tail = node;
-}
-
-
 struct Instruction*
 Instruction_FindLabel(char* label) {
     struct Instruction* curr = head;
@@ -73,6 +61,18 @@ Instruction_FindLabel(char* label) {
     }
 
     error_exit("label not found");
+}
+
+
+void Instruction_Append(char* op, char* left, char* right) {
+    struct Instruction* node = Instruction_Create(op, left, right);
+
+    if (head == NULL)
+        head = node;
+    else
+        tail->next = node;
+
+    tail = node;
 }
 
 
@@ -129,15 +129,15 @@ int operands_count(char* op) {
 
 
 void create_instruction_list(char** code) {
-    char* token;
-    while (token = next(code)) {
+    char* op;
+    while (op = next(code)) {
         char* left = NULL;
         char* right = NULL;
 
-        if (operands_count(token) >= 1) left  = next(code);
-        if (operands_count(token) == 2) right = next(code);
+        if (operands_count(op) >= 1) left  = next(code);
+        if (operands_count(op) == 2) right = next(code);
 
-        Instruction_Append(token, left, right);
+        Instruction_Append(op, left, right);
     };
 }
 
@@ -246,10 +246,6 @@ void execute(void) {
             }
         }
 
-        if (STR_EQ(curr->op, "jmp")) {
-            curr = Instruction_FindLabel(curr->left);
-            continue;
-        }
 
         if (STR_EQ(curr->op, "printint"))  printf("%d", *a);
         if (STR_EQ(curr->op, "printchar")) putchar(*a);
