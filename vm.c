@@ -13,7 +13,7 @@ struct Instruction {
     char* op;
     char* left;
     char* right;
-    struct Instruction *next;
+    struct Instruction* next;
 };
 
 
